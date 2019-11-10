@@ -1,0 +1,15 @@
+# Custom Card Resourcesss
+resources:
+  !include lovelace/resources/resources.yaml
+
+# Compact Custom Header
+cch:
+  !include lovelace/cch/compact-custom-header.yaml  
+
+titel: Zuhause
+
+views:
+  !include_dir_merge_list lovelace/views/
+
+button_card_templates:
+  !include_dir_named lovelace/templates/

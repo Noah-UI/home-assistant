@@ -1,0 +1,62 @@
+    entity: sensor.temp
+    name: Feuchtigkeit
+    custom_fields:
+      room: Arbeitszimmer
+      aktion: 54%
+      state_mod: >
+              [[[
+                if (states['input_boolean.air_1'].state == 'off')
+                  return "Entfeuchten aus";
+                return "Entfeuchten 50%";
+              ]]]
+    entity_picture: /local/icon/general/water.svg
+    show_entity_picture: true
+    size: 55%
+    color: rgb(227, 209, 16)
+    aspect_ratio: 1/1
+    styles:
+      grid:
+        - grid-template-areas: '"i aktion" "room room" "n n" "state_mod state_mod"'
+        - grid-template-columns: 1fr min-content   
+        - grid-template-rows: 1fr min-content min-content min-content min-con
+      icon:
+        - margin-left: -10%        
+      name:
+        - justify-self: start
+        - padding-left: 15px
+        - font-weight: bold
+        - font-size: 1.1rem
+        - padding-bottom:
+      state:
+        - justify-self: start
+        - padding-left: 15px
+        - font-size: 1rem
+        - padding-bottom: 5px       
+      custom_fields:
+        room:
+          - justify-self: start
+          - padding-left: 15px
+          - font-weight: bold
+          - font-size: 1.1rem
+        aktion:
+          - margin-right: 0.7rem
+          - height: 3.3rem
+          - width: 3.3rem        
+          - background-color: '#b8b0b0' 
+          - color: '#ffffff'   
+          - font-size: 1.2rem
+          - font-weight: bold          
+          - line-height: 47.5px        
+          - border-radius: 100%   
+        state_mod:
+          - justify-self: start
+          - padding-left: 15px
+          - font-size: 1rem
+          - padding-bottom: 5px   
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - filter: opacity(70%)
+          icon:
+            - filter: grayscale(100%)

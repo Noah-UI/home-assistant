@@ -1,0 +1,63 @@
+entity: input_boolean.notify_home
+name: Szene
+custom_fields:
+  room: Wohnung
+  counter:  >
+    [[[
+      return states['sensor.lights_on'].state;
+    ]]]
+  
+entity_picture: /local/icon/general/water.svg
+show_entity_picture: true
+show_state: true
+size: 55%
+color: rgb(227, 209, 16)
+aspect_ratio: 1/1
+hold_action: 
+  action: more-info 
+styles:
+  grid:
+    - grid-template-areas: '"i counter" "room room" "n n" "s s"'
+    - grid-template-columns: 1fr min-content   
+    - grid-template-rows: 1fr min-content min-content min-content min-con
+  icon:
+    - margin-left: -10%        
+  name:
+    - justify-self: start
+    - padding-left: 15px
+    - font-weight: bold
+    - font-size: 1.1rem
+    - padding-bottom:
+  state:
+    - justify-self: start
+    - padding-left: 15px
+    - font-size: 1rem
+    - padding-bottom: 5px       
+  custom_fields:
+    room:
+      - justify-self: start
+      - padding-left: 15px
+      - font-weight: bold
+      - font-size: 1.1rem
+    counter:
+      - margin-right: 0.7rem
+      - height: 3.3rem
+      - width: 3.3rem        
+      - background-color: '#b8b0b0' 
+      - color: '#ffffff'   
+      - font-size: 1.2rem
+      - font-weight: bold          
+      - line-height: 47.5px        
+      - border-radius: 100%   
+    state_mod:
+      - justify-self: start
+      - padding-left: 15px
+      - font-size: 1rem
+      - padding-bottom: 5px   
+state:
+  - value: 'off'
+    styles:
+      card:
+        - filter: opacity(70%)
+      icon:
+        - filter: grayscale(100%)

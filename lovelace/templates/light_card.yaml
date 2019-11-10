@@ -1,0 +1,56 @@
+    entity: input_boolean.notify_home
+    name: Licht
+    custom_fields:
+      room: Flur
+    entity_picture: /local/icon/smart_home/svg/037-idea.svg
+    show_entity_picture: true
+    icon: mdi:lightbulb
+    color_type: icon
+    size: 30%
+    color: rgb(227, 209, 16)
+    filter: blur(4px)
+    aspect_ratio: 1/1
+    show_state: true
+    hold_action: 
+      action: more-info 
+    styles:
+      card:
+        - height: 
+        - width:         
+      grid:
+        - grid-template-areas: '"i" "room" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content   
+      img_cell:
+        - align-self: start
+        - text-align: start
+      icon:
+        - width: 30%
+        - margin-top: -5%
+        - margin-left: -25%
+      name:
+        - justify-self: start
+        - padding-left: 15px
+        - font-weight: bold
+        - font-size: 1.1rem
+        - margin-top:
+      state:
+        - justify-self: start
+        - padding-left: 15px
+        - padding-bottom: 5px
+        - font-size: 1rem
+        - margin-top: 
+      custom_fields:
+        room:
+          - justify-self: start
+          - padding-left: 15px
+          - font-weight: bold
+          - font-size: 1.1rem
+          - margin-top:
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - filter: opacity(70%)
+          icon:
+            - filter: grayscale(100%)
