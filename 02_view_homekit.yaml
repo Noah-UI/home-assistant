@@ -1,0 +1,302 @@
+- title: Homekit
+  panel: true
+  background: var(--background-image)
+  cards:
+    - type: custom:layout-card
+      layout: vertical
+      max_width: 100%
+      rebuild: true
+      cards:
+
+    ### Header ###
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            style: |
+              ha-card {
+              background: rgba(255,255,000,0);
+              box-shadow: none;
+              color: var(--header-text-color);
+              font-size: 1em
+              }
+            content: >
+                #  [[ sensor.date_template ]] 
+
+                # [[ sensor.time_template ]] 
+
+          - type: markdown
+            style: |
+              ha-card {
+              background: rgba(255,255,000,0);
+              box-shadow: none;
+              text-align: right;
+              font-size: 1em;
+              color: var(--header-text-color)
+              }
+            content: >
+                # [[ sensor.dark_sky_temperature ]]°C
+
+                # [[ sensor.dark_sky_summary ]]
+
+          - type: custom:button-card
+            entity: sensor.weather_now
+            show_entity_picture: true
+            show_state: false
+            show_name: false
+            color_type: card
+            color: rgba(255,255,255,0)
+            size: 130%
+            styles:
+              card:   
+                - height: 8.3rem
+                - width: 8.3rem
+                - -webkit-box-shadow: 0px 0px 0px 0px black
+                - box-shadow: 0px 0px 0px 0px black   
+              icon:
+                # - justify-self: start
+                  - margin-left:   
+                # - margin-top: -5%             
+
+    ### Body ###
+      - type: custom:layout-card
+        layout: horizontal
+        column_num: 5
+        max_width: [11.11%, 22.22%, 22.22%, 22.22%, 22.22%] 
+        cards:
+
+      ### SPALTE 1 - SZENEN ###
+        - type: custom:layout-card
+          layout: vertical
+          cards:
+          ### TITEL SPALTE 1###
+            - type: markdown
+              style: |
+                ha-card {
+                background: none;
+                box-shadow: none;
+                font-weight: bold;               
+                font-size: var(--header-text-style);
+                color: var(--header-text-color)
+                }
+              content: >
+                  Szenen
+
+          ### INHALT SPALTE 1 - SZENEN ###
+
+            - type: custom:button-card
+              template: szene_card
+              name: Alle Lampen  
+              custom_fields:
+                raum: Wohnung  
+              entity: light.wohnung
+              entity_picture: /local/icon/smart_home/svg/037-idea.svg
+
+
+
+            - type: custom:button-card
+              template: szene_card
+              name: Alle Lampen 
+              custom_fields:
+                raum: Wohnzimmer  
+                aktion:  >
+                  [[[
+                    return states['sensor.lights_on_wohn'].state;
+                  ]]]                   
+              entity: group.licht_wohnzimmer
+              entity_picture: /local/icon/smart_home/svg/037-idea.svg#
+
+
+      ### SPALTE 2 - FLUR & KÜCHE ###
+        - type: custom:layout-card
+          layout: vertical
+          cards:
+          ### Titel der Spalte###
+            - type: markdown
+              style: |
+                ha-card {
+                background: none;
+                box-shadow: none;
+                font-weight: bold;               
+                font-size: var(--header-text-style);
+                color: var(--header-text-color)
+                }
+              content: >
+                  Küche & Flur
+
+          ### Inhalt der Spalte 2 ###
+            - type: custom:layout-card
+              layout: horizontal
+              column_num: 2
+              cards:
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.flur
+                  entity_picture: /local/icon/light/svg/008-lamp-4.svg
+                  name: Deckenlampe
+                  custom_fields:
+                    raum: Flur
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.kuche
+                  entity_picture: /local/icon/light/svg/008-lamp-4.svg
+                  name: Deckenlampe
+                  custom_fields:
+                    raum: Küche
+
+                - type: custom:button-card
+                  template: temp_card
+                  entity: sensor.temp_flur
+                  name: Temperatur
+                  custom_fields:
+                    raum: Flur
+
+                - type: custom:button-card
+                  template: temp_card
+                  entity: sensor.temp_kuche
+                  name: Temperatur
+                  custom_fields:
+                    raum: Küche
+
+
+      ### Spalte3 - Wohnzimmer ###
+
+        - type: custom:layout-card
+          layout: vertical
+          cards:
+          ### Titel der Spalte Wohnzimmer ###
+            - type: markdown
+              style: |
+                ha-card {
+                background: none;
+                box-shadow: none;
+                font-weight: bold;                  
+                font-size: var(--header-text-style);
+                color: var(--header-text-color)
+                }
+              content: >
+                  Wohnzimmmer
+          ### Inhalt Spalte Wohnzimmer ###
+            - type: custom:layout-card
+              layout: horizontal
+              column_num: 2
+              cards:
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.stern
+                  entity_picture: /local/icon/light/svg/008-lamp-4.svg
+                  name: Stern
+                  custom_fields:
+                    raum: Wohnzimmer
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.kleine_lampe
+                  entity_picture: /local/icon/light/svg/012-lamp-6.svg
+                  name: Kleine Lampe
+                  custom_fields:
+                    raum: Wohnzimmer
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.grosse_lampe
+                  entity_picture: /local/icon/light/svg/013-lamp-7.svg
+                  name: Große Lampe
+                  custom_fields:
+                    raum: Wohnzimmer
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.balkon_2
+                  entity_picture: /local/icon/light/svg/011-light-bulbs.svg
+                  name: Lichterkette
+                  custom_fields:
+                    raum: Balkon
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: media_player.android_tv
+                  entity_picture: /local/icon/general/tv.svg
+                  name: TV
+                  custom_fields:
+                    raum: Wohnzimmer 
+                      
+                - type: custom:button-card
+                  template: window_card
+                  entity: binary_sensor.window
+                  entity_picture: /local/icon/general/fahrenheit.svg
+                  name: Fenster
+                  custom_fields:
+                    raum: Wohnzimmer
+                  
+
+      ### SPALTE 4 - ARBEITSZIMMER ###
+        - type: custom:layout-card
+          layout: vertical
+          max_width: 300
+          cards:
+          ### Titel der Spalte###
+            - type: markdown
+              style: |
+                ha-card {
+                background: none;
+                box-shadow: none;
+                font-weight: bold;                  
+                font-size: var(--header-text-style);
+                color: var(--header-text-color)
+                }
+              content: >
+                  Arbeitszimmer
+          ### Inhalt der Spalte ###
+            - type: custom:layout-card
+              layout: horizontal
+              column_num: 2
+              cards:
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.yeelight_ceiling1_04cf8c9b6fec
+                  entity_picture: /local/icon/light/svg/008-lamp-4.svg
+                  name: Deckenlampe
+                  custom_fields:
+                    raum: Arbeitszimmer            
+
+                - type: custom:button-card
+                  template: light_card
+                  entity: light.arbeitszimmer
+                  entity_picture: /local/icon/general/air-purifier.svg
+                  name: Entfeuchter
+                  custom_fields:
+                    raum: Arbeitszimmer 
+
+                - type: custom:button-card
+                  template: air_card
+                  entity: input_boolean.air_1
+                  custom_fields:
+                    raum: Arbeitszimmer   
+
+
+      ### SPALTE 5 - SCHLAFZIMMER ###
+        - type: custom:layout-card
+          layout: vertical
+          max_width: 300
+          cards:
+          ### Titel der Spalte###
+            - type: markdown
+              style: |
+                ha-card {
+                background: none;
+                box-shadow: none;
+                font-weight: bold;                  
+                font-size: var(--header-text-style);
+                color: var(--header-text-color)
+                }
+              content: >
+                  Schlafzimmer
+          ### Inhalt der Spalte ###
+            - type: custom:layout-card
+              layout: horizontal
+              column_num: 2
+              cards:
